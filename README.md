@@ -25,7 +25,7 @@ A clean workspace.
 ---
 
 ![discord](./Screenshots/discord.png)
-Discord CSS (injected with [BeautifulDiscord](https://github.com/leovoel/BeautifulDiscord).
+Discord CSS (injected with [BeautifulDiscord](https://github.com/leovoel/BeautifulDiscord)).
 
 ![discordgtk](./Screenshots/discordgtk.png)
 Discord CSS vs PCManFM GTK.
