@@ -108,6 +108,7 @@ bindsym $mod+q       exec --no-startup-id dm-logout
 bindsym $mod+s       exec --no-startup-id dm-hub
 bindsym $mod+Shift+p exec --no-startup-id dm-pacman
 bindsym Print        exec --no-startup-id dm-scrot
+bindsym $mod+Print   exec --no-startup-id scrot
 bindsym $mod+Mod1+j  exec --no-startup-id dm-music -q
 bindsym $mod+Mod1+k  exec --no-startup-id dm-music -p
 bindsym $mod+Mod1+l  exec --no-startup-id dm-music 
