@@ -1,0 +1,18 @@
+#!/bin/bash
+
+DMENU=${DMENU:-dmenu -n 1 -z 1872 -x 25 -y 10}
+
+prompt="mpc:"
+prompt_add="Queue a song:"
+
+    cmd_list="prev play next stop repeat single consume random clear crop"
+
+cmd="$(echo $cmd_list | sed 's/ /\n/g' | ${DMENU} -p "$prompt")"
+[[ -z $cmd ]] && exit 1
+
+if [[ $cmd = insert ]]; then
+    mpc toggle
+else
+    mpc $cmd
+fi
+

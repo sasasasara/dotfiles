@@ -1,0 +1,1 @@
+DMENU=${DMENU:-dmenu -z 1872 -x 24 -y 10}

@@ -1,0 +1,54 @@
+/* put your custom css here. */
+.theme-dark {
+   --background-primary:#404552;
+   --background-tertiary:transparent;
+   --channeltextarea-background:transparent;
+   --scrollbar-thin-thumb:#767B87;
+   --scrollbar-auto-thumb:#767B87;
+   --scrollbar-thin-track:transparent;
+   --scrollbar-auto-track:#3E434F;
+   --scrollbar-auto-scrollbar-color-thumb:#767B87;
+   --scrollbar-auto-scrollbar-color-track:#3E434F;
+   --background-floating:#2D323D;
+   --text-normal:#D3DaE3;
+   --text-link:#5B94ED;
+   --interactive-normal:#9699A2;
+   --background-secondary:#383C4A;
+   --background-secondary-alt:#383C4A;
+   --activity-card-background:#2F343F;
+   --elevation-low:transparent;
+   --background-mentioned:rgba(61,56,74,0.50);
+   --background-mentioned-hover:rgba(61,56,74,0.8);
+   --interactive-muted:#696B66;
+}
+.callContainer-36WRfH {
+    background:black;
+}
+.gradientContainer-10lXLB {
+    visibility:hidden;
+}
+.peopleColumn-29fq28 {
+    background:#404552;
+}
+.theme-dark .body-3iLsc4, .theme-dark .footer-1fjuF6, .theme-dark .headerNormal-T_seeN, .theme-dark .selected-1Tbx07, .wrapper-3NnKdC, .theme-dark .inset-3sAvek {
+    background-color:#2F343F;
+}
+.headerPlaying-j0WQBV {
+    background:#6BA4E7;
+}
+.theme-dark .streamPreview-2-WUWT {
+    background:#2D323D;
+}
+.theme-dark .outer-1AjyKL.active-1xchHY, .theme-dark .outer-1AjyKL.interactive-3B9GmY:hover {
+    background-color:#252932;
+}
+*{
+    font-family:Lucida Console;
+    font-size:12px;
+}
+.theme-dark .root-1gCeng, .theme-dark .footer-2gL1pp, .theme-dark .autocomplete-1vrmpx {
+    background-color:#383C4A;
+}
+.categoryHeader-O1zU94 {
+    background-color:#373C4A;
+}

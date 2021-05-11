@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+# script name: dm-pacman
+# Description: A software manager using dmenu
+# Dependencies: dmenu, pacman
+# Contributors: Murtaza Udaipurwala
+#               HostGrady
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+config="$HOME/.config/dmscripts/config"
+[[ -f "$config" ]] && source "$config"
+
+TERMINAL=st
+
+packageList="$HOME/.cache/packageList"
+
+refresh(){
+    # only update the packageList once a day
+    pacman -Si | awk '/^Name/{name=$3} /^Description/{sub(/^.{18}/,"", $0); print name, " => ", $0}' > "$HOME"/.cache/packageList
+}
+
+install(){
+    package=$($DMENU -l 30 -p "Package to install" < "$packageList") || exit
+    $TERMINAL sudo pacman -S $(echo "$package" | cut -d'=' -f1)
+}
+
+remove(){
+    package=$(pacman -Qeq | $DMENU -l 30 -p "Package to remove") || exit
+    $TERMINAL sudo pacman -Rns $package
+}
+
+update(){
+    $TERMINAL sudo pacman -Syu 
+    refresh
+}
+
+cleanUp(){
+    [ "$(pacman -Qdtq)" = "" ] && exit
+    $TERMINAL sudo pacman -Rns $(pacman -Qdtq)
+}
+
+menu(){
+    operation=$(printf "install\nremove\nupdate\nremove orphan packages" | $DMENU -l 4 -p "Select operation" "${@}") || exit
+    case $operation in
+        "install") install ;;
+        "remove") remove ;;
+        "update") update ;;
+        "remove orphan packages") cleanUp ;;
+        *) echo "invalid operation" && exit ;;
+    esac
+}
+
+menu "${@}"

@@ -1,9 +1,2 @@
-#dotfiles
-
-My personal dotfiles.
---------------------
-
----
-
-The programs are:
-    
+# dotfiles
+My personal home computer config.

@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#
+# Script name: dmhub
+# Description: a hub that you can execute all the other scripts from
+# Dependencies: dmenu, executable dmscripts, all the dependancies from dmscripts
+# GitLab: https://www.gitlab.com/dwt1/hub
+# License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
+# Contributors: n-e0
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
+
+config="${HOME}/.config/dmscripts/config"
+# No issues should arrise since it won't even be sourced if the file doesn't exist
+# shellcheck disable=SC1090	
+[[ -f "${config}" ]] && source "${config}"
+
+# FIX: Don't hardcode paths
+path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")" && pwd)"
+
+
+# TODO: Generate this list
+declare -A options
+    options[dm-man]="$path/dm-man"
+    options[dm-colors]="$path/dm-colors"
+    options[dm-conf]="$path/dm-conf"
+    options[dm-kill]="$path/dm-kill"
+    options[dm-logout]="$path/dm-logout"
+    options[dm-qute]="$path/dm-qute"
+    options[dm-red]="$path/dm-red"
+    options[dm-scrot]="$path/dm-scrot"
+    options[dm-search]="$path/dm-search"
+    options[dm-sounds]="$path/dm-sounds"
+    options[dm-wall]="$path/dm-wall"
+    options[dm-music]="$path/dm-music"
+    options[dm-pacman]="$path/dm-pacman"
+    options[dm-usbmount]="$path/dm-usbmount"
+    options[dm-wifi]="$path/dm-wifi"
+
+declare -A options_clean
+    for i in "${!options[@]}"; do
+        [[ -f ${options["${i}"]} ]] && options_clean["${i}"]=${options["${i}"]}
+    done
+
+choice=$(printf '%s\n' "${!options_clean[@]}" | sort | $DMENU -l 20 -p 'Run Script:')
+
+if [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${options_clean["${choice}"]}")
+    bash "$cfg"
+
+else
+    echo "Program terminated." && exit 0
+fi
