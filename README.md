@@ -11,6 +11,7 @@ The current programs are:
 * i3-gaps
 * i3status
 * Neofetch
+* Neovim
 * Qtile
 * Qutebrowser
 * VIM
